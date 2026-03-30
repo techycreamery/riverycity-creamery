@@ -9,25 +9,93 @@ function exploreSectionHref(sectionId) {
   return `/#${sectionId}`;
 }
 
+const mobileNavSections = [
+  {
+    key: 'explore',
+    label: 'Explore',
+    href: '/#explore-flavors',
+    links: [
+      { label: 'Flavors', href: exploreSectionHref('explore-flavors') },
+      { label: 'Bundles', href: exploreSectionHref('explore-bundles') },
+      { label: 'New Arrivals', href: exploreSectionHref('explore-new-arrivals') },
+      { label: 'Gluten Free', href: exploreSectionHref('explore-gluten-free') },
+      { label: 'Fat Free', href: exploreSectionHref('explore-fat-free') },
+      { label: 'Dairy Free', href: exploreSectionHref('explore-dairy-free') },
+      { label: 'Online Exclusives', href: exploreSectionHref('explore-online-exclusives') }
+    ]
+  },
+  {
+    key: 'order',
+    label: 'Order',
+    href: '/order',
+    links: [
+      { label: 'Prepackaged Ice Cream', href: orderFilterHref('Prepackaged') },
+      { label: 'Bundles', href: orderFilterHref('Bundles') },
+      { label: 'Ice Cream Sandwiches', href: orderFilterHref('Ice Cream Sandwiches') },
+      { label: 'Ice Cream Cakes', href: orderFilterHref('Cakes') },
+      { label: 'Cones and Toppings', href: orderFilterHref('Cones and Toppings') },
+      { label: 'Party Boxes', href: orderFilterHref('Party Boxes') },
+      { label: 'Affogato', href: orderFilterHref('Affogato') }
+    ]
+  },
+  {
+    key: 'shops',
+    label: 'Scoop Shops',
+    href: '/scoop-shops',
+    links: [
+      { label: 'Missoula, MT', href: '/scoop-shops' },
+      { label: 'Hours & Location', href: '/scoop-shops' },
+      { label: 'Maps & Directions', href: '/scoop-shops' }
+    ]
+  },
+  {
+    key: 'story',
+    label: 'Our Story',
+    href: '/about',
+    links: [
+      { label: 'About River City', href: '/about' },
+      { label: 'Events & Catering', href: '/about' },
+      { label: 'What We Make', href: '/about' },
+      { label: 'Missoula Roots', href: '/about' }
+    ]
+  }
+];
+
 function PrimaryNav({ exploreHref = '/#explore-flavors', mobile = false, onNavigate }) {
   const [activeMenu, setActiveMenu] = useState(null);
+  const [mobileOpenSection, setMobileOpenSection] = useState(null);
   const closeTimeoutRef = useRef(null);
 
   if (mobile) {
     return (
       <nav className="mobile-nav-list" aria-label="Primary">
-        <a href={exploreHref} onClick={onNavigate}>
-          Explore
-        </a>
-        <a href="/order" onClick={onNavigate}>
-          Order
-        </a>
-        <a href="/scoop-shops" onClick={onNavigate}>
-          Scoop Shops
-        </a>
-        <a href="/about" onClick={onNavigate}>
-          Our Story
-        </a>
+        {mobileNavSections.map((section) => (
+          <div className="mobile-nav-group" key={section.key}>
+            <button
+              type="button"
+              className={`mobile-nav-trigger${mobileOpenSection === section.key ? ' mobile-nav-trigger-open' : ''}`}
+              aria-expanded={mobileOpenSection === section.key}
+              onClick={() =>
+                setMobileOpenSection((current) => (current === section.key ? null : section.key))
+              }
+            >
+              <span>{section.label}</span>
+              <span aria-hidden="true">{mobileOpenSection === section.key ? '−' : '+'}</span>
+            </button>
+            <div
+              className={`mobile-nav-links${mobileOpenSection === section.key ? ' mobile-nav-links-open' : ''}`}
+            >
+              <a href={section.href} onClick={onNavigate}>
+                View All
+              </a>
+              {section.links.map((link) => (
+                <a key={link.label} href={link.href} onClick={onNavigate}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
       </nav>
     );
   }

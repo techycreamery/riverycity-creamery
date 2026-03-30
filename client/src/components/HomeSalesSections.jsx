@@ -5,6 +5,10 @@ import lemonTop from '../assets/lemon_top_home.jpg';
 import strawberryTop from '../assets/strawberry_top.jpg';
 import mintTop from '../assets/mint_chocolate_top_home.jpg';
 import cottonCandyTop from '../assets/cotton_candy_top_home.jpg';
+import bubblegumTop from '../assets/bubblegum.png';
+import oatmealRaisinTop from '../assets/oatmeal_raisin.png';
+import sweetCreamVanillaTop from '../assets/sweet_cream_vanilla.png';
+import whiteChocolateMacadamiaTop from '../assets/white_chocolate_macadamia.png';
 
 const featuredProducts = [
   {
@@ -28,9 +32,10 @@ const featuredProducts = [
 ];
 
 const flavorHighlights = [
-  { name: 'Lemon', image: lemonTop },
-  { name: 'Mint Chocolate Chip', image: mintTop },
-  { name: 'Cotton Candy', image: cottonCandyTop }
+  { name: 'Sweet Cream Vanilla', image: sweetCreamVanillaTop },
+  { name: 'Bubblegum', image: bubblegumTop },
+  { name: 'Oatmeal Raisin', image: oatmealRaisinTop },
+  { name: 'White Chocolate Macadamia', image: whiteChocolateMacadamiaTop }
 ];
 
 const exploreSections = [

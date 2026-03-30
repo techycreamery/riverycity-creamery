@@ -17,6 +17,7 @@ function buildPrompt(details) {
 }
 
 function OrderSupportChat() {
+  const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
@@ -52,6 +53,7 @@ function OrderSupportChat() {
       return;
     }
 
+    setOpen(true);
     const customerMessage = pushMessage('customer', trimmed);
     const nextMessages = [...messages, customerMessage];
     setMessages(nextMessages);
@@ -91,34 +93,38 @@ function OrderSupportChat() {
   };
 
   return (
-    <section className="content-block order-support-block">
-      <div className="section">
-        <div className="section-title order-support-title">
-          <div>
-            <span className="eyebrow">Order Help</span>
-            <h2>AI order assistant</h2>
+    <div className={`order-support-widget${open ? ' order-support-widget-open' : ''}`}>
+      {open ? (
+        <section className="order-support-panel" aria-label="Order support assistant">
+          <div className="order-support-panel-header">
+            <div>
+              <span className="eyebrow">Order Help</span>
+              <h2>Order assistant</h2>
+            </div>
+            <button
+              type="button"
+              className="order-support-close"
+              onClick={() => setOpen(false)}
+              aria-label="Close order support"
+            >
+              Close
+            </button>
           </div>
-          <p>
-            Customers can check status with a reference code or the email and phone number
-            used at checkout.
-          </p>
-        </div>
 
-        <div className="order-support-chat">
           <div className="chat-thread" aria-live="polite">
             {messages.map((message) => (
               <article
                 key={message.id}
                 className={`chat-bubble ${message.sender === 'customer' ? 'chat-bubble-customer' : 'chat-bubble-assistant'}`}
               >
-                <span>{message.sender === 'customer' ? 'You' : 'River City AI'}</span>
+                <span>{message.sender === 'customer' ? 'You' : 'River City Assistant'}</span>
                 <p>{message.text}</p>
               </article>
             ))}
 
             {isLoading ? (
               <article className="chat-bubble chat-bubble-assistant">
-                <span>River City AI</span>
+                <span>River City Assistant</span>
                 <p>Looking up that order now...</p>
               </article>
             ) : null}
@@ -142,9 +148,19 @@ function OrderSupportChat() {
               </button>
             </div>
           </form>
-        </div>
-      </div>
-    </section>
+        </section>
+      ) : null}
+
+      <button
+        type="button"
+        className="order-support-launcher"
+        onClick={() => setOpen((current) => !current)}
+        aria-label={open ? 'Hide order support' : 'Open order support'}
+      >
+        <span>RC</span>
+        <strong>Find an order</strong>
+      </button>
+    </div>
   );
 }
 

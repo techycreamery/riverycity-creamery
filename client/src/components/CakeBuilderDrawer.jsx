@@ -85,7 +85,7 @@ function CakeBuilderDrawer({ open, withCart, onClose, onAddCake, initialShape, i
   return (
     <aside
       className={`cake-builder-drawer${open ? ' cake-builder-drawer-open' : ''}${
-        withCart ? ' cake-builder-drawer-with-cart' : ''
+        open && withCart ? ' cake-builder-drawer-with-cart' : ''
       }`}
     >
       <div className="cart-drawer-head">

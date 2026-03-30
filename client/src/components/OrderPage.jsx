@@ -1,6 +1,5 @@
 import React from 'react';
 import OrderSection from './OrderSection';
-import OrderSupportChat from './OrderSupportChat';
 import Footer from './Footer';
 import SiteHeader from './SiteHeader';
 
@@ -24,7 +23,6 @@ function OrderPage({ openCart, openCakeBuilder, cartCount = 0 }) {
         </div>
       </section>
       <OrderSection openCart={openCart} openCakeBuilder={openCakeBuilder} />
-      <OrderSupportChat />
       <section className="content-block" id="delivery">
         <div className="section">
           <div className="section-title">

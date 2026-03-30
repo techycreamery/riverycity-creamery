@@ -7,6 +7,11 @@ import lemonTopImage from '../assets/lemon_top_home.jpg';
 import coconutTopImage from '../assets/coconut_top_home.jpg';
 import cottonCandyTopImage from '../assets/cotton_candy_top_home.jpg';
 import mintChocolateHoverImage from '../assets/mint_chocolate_top.PNG';
+import bubblegumImage from '../assets/bubblegum.png';
+import honeycombImage from '../assets/honeycomb.PNG';
+import oatmealRaisinImage from '../assets/oatmeal_raisin.png';
+import sweetCreamVanillaImage from '../assets/sweet_cream_vanilla.png';
+import whiteChocolateMacadamiaImage from '../assets/white_chocolate_macadamia.png';
 import pintIcon from '../assets/pint_icon.png';
 import quartIcon from '../assets/quart_icon.png';
 import halfGallonIcon from '../assets/half_gallon_icon.png';
@@ -137,6 +142,21 @@ const flavorImageMap = {
   },
   'Mint Chocolate Chip': {
     hoverImage: mintChocolateHoverImage
+  },
+  Bubblegum: {
+    hoverImage: bubblegumImage
+  },
+  'Oatmeal Raisin': {
+    hoverImage: oatmealRaisinImage
+  },
+  'Sweet Cream Vanilla': {
+    hoverImage: sweetCreamVanillaImage
+  },
+  Honeycomb: {
+    hoverImage: honeycombImage
+  },
+  'White Chocolate-Macadamia': {
+    hoverImage: whiteChocolateMacadamiaImage
   }
 };
 

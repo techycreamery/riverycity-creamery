@@ -13,6 +13,7 @@ import ResetPasswordPage from './components/ResetPasswordPage';
 import AdminLoginPage from './components/AdminLoginPage';
 import AdminDashboardPage from './components/AdminDashboardPage';
 import CakeBuilderDrawer from './components/CakeBuilderDrawer';
+import OrderSupportChat from './components/OrderSupportChat';
 
 function readCartCount() {
   try {
@@ -162,6 +163,7 @@ function App() {
         initialShape={initialCakeShape}
         initialCake={editingCake}
       />
+      <OrderSupportChat />
       <CartDrawer
         open={cartOpen}
         withCakeBuilder={cakeBuilderOpen}

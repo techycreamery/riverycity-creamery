@@ -166,6 +166,58 @@ a {
   gap: 14px;
 }
 
+.mobile-nav-group {
+  display: grid;
+  gap: 0;
+}
+
+.mobile-nav-trigger {
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(12, 41, 64, 0.08);
+  background: transparent;
+  color: var(--navy);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mobile-nav-trigger-open {
+  color: var(--river);
+}
+
+.mobile-nav-links {
+  display: grid;
+  gap: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 180ms ease, opacity 180ms ease;
+}
+
+.mobile-nav-links-open {
+  max-height: 420px;
+  opacity: 1;
+}
+
+.mobile-nav-links a {
+  padding: 11px 0 11px 14px;
+  border-bottom: 1px solid rgba(12, 41, 64, 0.06);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: rgba(29, 45, 57, 0.88);
+}
+
 .mobile-nav-list a,
 .mobile-nav-secondary a,
 .mobile-nav-secondary .account-nav-button {
@@ -482,32 +534,91 @@ a {
   z-index: 1;
 }
 
-.order-support-block {
-  padding-top: 16px;
+.order-support-widget {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 70;
+  display: grid;
+  justify-items: end;
+  gap: 14px;
 }
 
-.order-support-title {
+.order-support-panel {
+  width: min(420px, calc(100vw - 24px));
+  max-height: min(720px, calc(100vh - 120px));
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(250, 111, 107, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(215, 237, 246, 0.85), rgba(255, 250, 244, 0.98));
+  border: 1px solid rgba(16, 32, 48, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.order-support-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
   align-items: start;
 }
 
-.order-support-chat {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
-  gap: 24px;
-  padding: 24px;
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at top right, rgba(250, 111, 107, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(215, 237, 246, 0.65), rgba(255, 250, 244, 0.94));
-  border: 1px solid rgba(16, 32, 48, 0.08);
-  box-shadow: var(--shadow);
+.order-support-panel-header h2 {
+  margin: 6px 0 0;
+  font-size: 1.45rem;
+  color: var(--navy);
+}
+
+.order-support-close {
+  border: 0;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--navy);
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.order-support-launcher {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #17364f, #0f6893);
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(15, 93, 133, 0.3);
+  cursor: pointer;
+}
+
+.order-support-launcher span {
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.order-support-launcher strong {
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
 }
 
 .chat-thread {
   display: grid;
   gap: 14px;
   align-content: start;
-  min-height: 380px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .chat-bubble {
@@ -554,13 +665,10 @@ a {
 .chat-composer {
   display: grid;
   gap: 14px;
-  padding: 20px;
+  padding: 18px;
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(16, 32, 48, 0.08);
-  align-self: start;
-  position: sticky;
-  top: 96px;
 }
 
 .chat-label {
@@ -2106,7 +2214,20 @@ a {
 }
 
 .cart-drawer-foot .button {
+  width: 100%;
+  display: inline-flex;
   border-radius: 0;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.cake-builder-drawer .cart-drawer-foot .button {
+  width: 100%;
+  display: inline-flex;
+  border-radius: 0;
+  border: none;
   text-align: center;
   justify-content: center;
   text-transform: uppercase;
@@ -2400,9 +2521,9 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .order-support-chat {
-    grid-template-columns: 1fr;
-    padding: 18px;
+  .order-support-widget {
+    right: 12px;
+    bottom: 12px;
   }
 
   .home-explore-layout {
@@ -2415,10 +2536,6 @@ a {
 
   .chat-thread {
     min-height: 0;
-  }
-
-  .chat-composer {
-    position: static;
   }
 
   .brand {
@@ -2532,6 +2649,16 @@ a {
   .button {
     width: 100%;
     text-align: center;
+  }
+
+  .order-support-panel {
+    width: min(100vw - 16px, 390px);
+    max-height: calc(100vh - 96px);
+    padding: 16px;
+  }
+
+  .order-support-launcher {
+    padding: 11px 14px;
   }
 
   .chat-composer-footer button {
