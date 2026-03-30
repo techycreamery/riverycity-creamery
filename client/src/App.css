@@ -204,7 +204,7 @@ a {
 }
 
 .mobile-nav-links-open {
-  max-height: 420px;
+  max-height: 2000px;
   opacity: 1;
 }
 
@@ -2479,11 +2479,11 @@ a {
 
   .mobile-nav-panel {
     display: block;
-    position: fixed;
-    top: 60px;
+    position: absolute;
+    top: 100%;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: calc(100vh - 60px);
     padding: 24px 18px 32px;
     background: rgba(255, 250, 244, 0.98);
     border-top: 1px solid rgba(12, 41, 64, 0.08);
