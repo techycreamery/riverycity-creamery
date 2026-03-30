@@ -9,9 +9,11 @@ app.use(express.json());
 
 const deliveryWindowsRoutes = require('./routes/deliveryWindowsRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const orderSupportRoutes = require('./routes/orderSupportRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/delivery-windows', deliveryWindowsRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/order-support', orderSupportRoutes);
 app.use('/api/admin', adminRoutes);
 
 app.get('/', (req, res) => {

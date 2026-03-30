@@ -5,7 +5,11 @@ function orderFilterHref(filter) {
   return `/order?filter=${encodeURIComponent(filter)}`;
 }
 
-function PrimaryNav({ exploreHref = '/#featured', mobile = false, onNavigate }) {
+function exploreSectionHref(sectionId) {
+  return `/#${sectionId}`;
+}
+
+function PrimaryNav({ exploreHref = '/#explore-flavors', mobile = false, onNavigate }) {
   const [activeMenu, setActiveMenu] = useState(null);
   const closeTimeoutRef = useRef(null);
 
@@ -78,19 +82,19 @@ function PrimaryNav({ exploreHref = '/#featured', mobile = false, onNavigate }) 
           <div className="nav-mega-grid">
             <div className="nav-mega-column">
               <span className="nav-mega-label">Explore</span>
-              <a href="/order">Flavors</a>
-              <a href="/about">Bundles</a>
-              <a href="/about">New Arrivals</a>
-              <a href="/about">Gluten Free</a>
-              <a href="/about">Fat Free</a>
-              <a href="/about">Dairy Free</a>
-              <a href="/about">Online Exclusives</a>
+              <a href={exploreSectionHref('explore-flavors')}>Flavors</a>
+              <a href={exploreSectionHref('explore-bundles')}>Bundles</a>
+              <a href={exploreSectionHref('explore-new-arrivals')}>New Arrivals</a>
+              <a href={exploreSectionHref('explore-gluten-free')}>Gluten Free</a>
+              <a href={exploreSectionHref('explore-fat-free')}>Fat Free</a>
+              <a href={exploreSectionHref('explore-dairy-free')}>Dairy Free</a>
+              <a href={exploreSectionHref('explore-online-exclusives')}>Online Exclusives</a>
             </div>
-            <a className="nav-mega-feature" href="/order">
+            <a className="nav-mega-feature" href={exploreSectionHref('explore-flavors')}>
               <img src={exploreImage} alt="River City Creamery flavors" />
               <div>
                 <span className="nav-mega-label">Featured</span>
-                <p>Build a take-home order with pickup or local delivery.</p>
+                <p>Jump into the homepage explore sections and then move into checkout.</p>
               </div>
             </a>
           </div>
@@ -109,10 +113,10 @@ function PrimaryNav({ exploreHref = '/#featured', mobile = false, onNavigate }) 
           <div className="nav-mega-grid">
             <div className="nav-mega-column">
               <span className="nav-mega-label">Order</span>
-              <a href={orderFilterHref('Prepackaged')}>Prepackaged</a>
+              <a href={orderFilterHref('Prepackaged')}>Prepackaged Ice Cream</a>
               <a href={orderFilterHref('Bundles')}>Bundles</a>
               <a href={orderFilterHref('Ice Cream Sandwiches')}>Ice Cream Sandwiches</a>
-              <a href={orderFilterHref('Cakes')}>Cakes</a>
+              <a href={orderFilterHref('Cakes')}>Ice Cream Cakes</a>
               <a href={orderFilterHref('Cones and Toppings')}>Cones and Toppings</a>
               <a href={orderFilterHref('Party Boxes')}>Party Boxes</a>
               <a href={orderFilterHref('Affogato')}>Affogato</a>

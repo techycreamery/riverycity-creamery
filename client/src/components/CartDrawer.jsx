@@ -15,7 +15,7 @@ function readCart() {
   }
 }
 
-function CartDrawer({ open, onClose }) {
+function CartDrawer({ open, withCakeBuilder, onClose, onEditCake }) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -56,8 +56,7 @@ function CartDrawer({ open, onClose }) {
 
   return (
     <>
-      {open ? <button type="button" className="cart-backdrop" onClick={onClose} aria-label="Close cart" /> : null}
-      <aside className={`cart-drawer${open ? ' cart-drawer-open' : ''}`}>
+      <aside className={`cart-drawer${open ? ' cart-drawer-open' : ''}${withCakeBuilder ? ' cart-drawer-with-cake-builder' : ''}`}>
         <div className="cart-drawer-head">
           <h2>
             Your Cart <span className="cart-drawer-count">({itemCount} Items)</span>
@@ -81,6 +80,15 @@ function CartDrawer({ open, onClose }) {
                       {item.quantity} x {currency(item.price)}
                     </span>
                   </div>
+                  {item.id === 'ice-cream-cake' ? (
+                    <button
+                      type="button"
+                      className="cart-edit-button"
+                      onClick={() => onEditCake && onEditCake(item)}
+                    >
+                      Edit Cake
+                    </button>
+                  ) : null}
                 </div>
                 <button
                   type="button"

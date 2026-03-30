@@ -35,8 +35,11 @@ Used by the React app to connect to the backend API. In production, update this 
 
 MONGODB_URI=your-mongodb-uri
 STRIPE_SECRET_KEY=your-stripe-secret-key
+OPENAI_API_KEY=your-openai-api-key
+OPENAI_ORDER_SUPPORT_MODEL=gpt-5-mini
 
-Required for connecting to MongoDB and Stripe on the backend.
+`MONGODB_URI` and `STRIPE_SECRET_KEY` support database and payments on the backend.
+`OPENAI_API_KEY` enables the AI order support chat. If it is omitted, the chat falls back to deterministic lookup responses.
 
 ---
 
@@ -70,6 +73,8 @@ REACT_APP_API_URL=https://your-backend-api.onrender.com
 
 MONGODB_URI=your-mongodb-uri
 STRIPE_SECRET_KEY=your-stripe-secret-key
+OPENAI_API_KEY=your-openai-api-key
+OPENAI_ORDER_SUPPORT_MODEL=gpt-5-mini
 
 
 Make sure to set these in the **Render Dashboard > Environment** tab.
@@ -92,4 +97,3 @@ Once deployed:
 - React will serve your frontend on Vercel (e.g. `https://river-city-creamery.vercel.app`)
 - Express will serve your API on Render (e.g. `https://river-city-creamery-api.onrender.com`)
 - Your full stack is now live!
-

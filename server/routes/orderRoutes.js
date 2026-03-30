@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Order = require('../models/Order');
 const inMemoryOrders = require('../lib/inMemoryOrders');
+const { formatOrderForCustomer, lookupOrder } = require('../lib/orderLookup');
 
 // POST /api/orders
 router.post('/', async (req, res) => {
@@ -78,6 +79,33 @@ router.post('/', async (req, res) => {
     res.status(201).json(saved);
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/orders/lookup
+router.post('/lookup', async (req, res) => {
+  try {
+    const { orderId, reference, email, phone } = req.body || {};
+    const hasIdLookup = String(orderId || '').trim() || String(reference || '').trim();
+    const hasContactLookup = String(email || '').trim() && String(phone || '').trim();
+
+    if (!hasIdLookup && !hasContactLookup) {
+      return res.status(400).json({
+        error: 'Provide an order ID, a 6-character reference, or both email and phone.'
+      });
+    }
+
+    const order = await lookupOrder({ orderId, reference, email, phone });
+
+    if (!order) {
+      return res.status(404).json({
+        error: 'We could not find an order with that information.'
+      });
+    }
+
+    return res.json({ order: formatOrderForCustomer(order) });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
 });
 

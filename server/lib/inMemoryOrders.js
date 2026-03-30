@@ -18,6 +18,18 @@ function getOrderById(id) {
   return orders.find((order) => order._id === id) || null;
 }
 
+function findOrdersByEmail(email) {
+  const normalizedEmail = String(email || '').trim().toLowerCase();
+
+  if (!normalizedEmail) {
+    return [];
+  }
+
+  return orders.filter(
+    (order) => String(order.customer?.email || '').trim().toLowerCase() === normalizedEmail
+  );
+}
+
 function listOrders() {
   return [...orders].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
@@ -25,5 +37,6 @@ function listOrders() {
 module.exports = {
   createOrder,
   getOrderById,
+  findOrdersByEmail,
   listOrders
 };

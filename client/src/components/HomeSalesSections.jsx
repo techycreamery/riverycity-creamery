@@ -33,6 +33,93 @@ const flavorHighlights = [
   { name: 'Cotton Candy', image: cottonCandyTop }
 ];
 
+const exploreSections = [
+  {
+    id: 'explore-flavors',
+    label: 'Flavors',
+    title: 'Signature scoops and take-home flavors.',
+    copy: 'Point customers to the classics, seasonal rotations, and freezer-ready favorites that move fastest online.',
+    image: strawberryTop,
+    ctaHref: '/order',
+    ctaLabel: 'Shop Flavors',
+    secondaryHref: '/order?filter=Prepackaged',
+    secondaryLabel: 'Take Home Menu',
+    highlights: ['Seasonal favorites', 'Classic scoops', 'Take-home pints']
+  },
+  {
+    id: 'explore-bundles',
+    label: 'Bundles',
+    title: 'Bundled dessert drops for faster checkout.',
+    copy: 'Show customers the easiest way to order for a family night, office treat, or freezer restock in one click.',
+    image: coconutTop,
+    ctaHref: '/order?filter=Bundles',
+    ctaLabel: 'Browse Bundles',
+    secondaryHref: '/order?filter=Party Boxes',
+    secondaryLabel: 'Party Boxes',
+    highlights: ['Family night kits', 'Group orders', 'Party-ready extras']
+  },
+  {
+    id: 'explore-new-arrivals',
+    label: 'New Arrivals',
+    title: 'Spotlight what just hit the menu.',
+    copy: 'Use the homepage to surface fresh flavor drops, limited-run builds, and anything customers should grab before it rotates out.',
+    image: cottonCandyTop,
+    ctaHref: '/order',
+    ctaLabel: 'See New Arrivals',
+    secondaryHref: '/order?filter=Subscription',
+    secondaryLabel: 'Keep Me Updated',
+    highlights: ['Limited runs', 'Seasonal builds', 'Fresh drops']
+  },
+  {
+    id: 'explore-gluten-free',
+    label: 'Gluten Free',
+    title: 'Make gluten-free options easy to find.',
+    copy: 'Give shoppers a direct section to start from when they need a simpler ingredient path and quick confidence.',
+    image: lemonTop,
+    ctaHref: '/order',
+    ctaLabel: 'Explore Gluten Free',
+    secondaryHref: '/about',
+    secondaryLabel: 'Ingredient Questions',
+    highlights: ['Simpler ingredient path', 'Quick filter destination', 'Confidence-first shopping']
+  },
+  {
+    id: 'explore-fat-free',
+    label: 'Fat Free',
+    title: 'Feature lighter picks without burying them.',
+    copy: 'This section can call out leaner menu options, rotating sorbet-style offerings, and faster paths for preference-led shoppers.',
+    image: mintTop,
+    ctaHref: '/order',
+    ctaLabel: 'See Fat Free Options',
+    secondaryHref: '/scoop-shops',
+    secondaryLabel: 'Ask In Shop',
+    highlights: ['Lighter choices', 'Sorbet-style options', 'Preference-led browsing']
+  },
+  {
+    id: 'explore-dairy-free',
+    label: 'Dairy Free',
+    title: 'Give dairy-free guests their own starting point.',
+    copy: 'Make it obvious where non-dairy shoppers should begin, with a section that promotes alternative bases and current availability.',
+    image: chocolateTop,
+    ctaHref: '/order',
+    ctaLabel: 'Shop Dairy Free',
+    secondaryHref: '/about',
+    secondaryLabel: 'Learn More',
+    highlights: ['Non-dairy bases', 'Current availability', 'Alternative treats']
+  },
+  {
+    id: 'explore-online-exclusives',
+    label: 'Online Exclusives',
+    title: 'Reserve digital-only offers for homepage discovery.',
+    copy: 'Use this section for preorder drops, web-only bundles, and special checkout incentives that reward customers for ordering direct.',
+    image: cottonCandyTop,
+    ctaHref: '/order',
+    ctaLabel: 'See Exclusives',
+    secondaryHref: '/checkout',
+    secondaryLabel: 'Start Checkout',
+    highlights: ['Web-only drops', 'Preorder exclusives', 'Direct-order perks']
+  }
+];
+
 function HomeSalesSections() {
   return (
     <>
@@ -88,6 +175,48 @@ function HomeSalesSections() {
           </div>
         </div>
       </section>
+
+      {exploreSections.map((section, index) => (
+        <section
+          key={section.id}
+          className={`content-block home-explore-block${index % 2 === 1 ? ' home-explore-block-alt' : ''}`}
+          id={section.id}
+        >
+          <div className="section">
+            <div className="home-explore-layout">
+              <div className="home-explore-copy">
+                <span className="eyebrow">{section.label}</span>
+                <h2>{section.title}</h2>
+                <p>{section.copy}</p>
+                <div className="feature-pills">
+                  {section.highlights.map((highlight) => (
+                    <span key={highlight}>{highlight}</span>
+                  ))}
+                </div>
+                <div className="hero-actions">
+                  <a className="button button-primary" href={section.ctaHref}>
+                    {section.ctaLabel}
+                  </a>
+                  <a className="button button-secondary" href={section.secondaryHref}>
+                    {section.secondaryLabel}
+                  </a>
+                </div>
+              </div>
+
+              <article className="sales-card home-explore-card">
+                <img className="sales-image" src={section.image} alt={section.label} />
+                <div className="sales-copy">
+                  <h3>{section.label}</h3>
+                  <p>{section.copy}</p>
+                  <a className="button button-secondary" href={section.ctaHref}>
+                    Jump In
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section className="content-block">
         <div className="section promo-band">

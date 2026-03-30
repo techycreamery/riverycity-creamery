@@ -32,7 +32,7 @@ function Header({ openCart, cartCount = 0 }) {
         <SiteHeader
           openCart={openCart}
           cartCount={cartCount}
-          exploreHref="#featured"
+          exploreHref="#explore-flavors"
           secondaryLink={{ href: '/login', label: 'Rewards' }}
         />
         <div className="hero-grid">

@@ -7,6 +7,7 @@ const orderItemSchema = new mongoose.Schema(
     flavor: { type: String, trim: true },
     size: { type: String, trim: true },
     cakeBuild: {
+      shape: { type: String, trim: true },
       topLayer: { type: String, trim: true },
       middle: { type: String, trim: true },
       bottomLayer: { type: String, trim: true },

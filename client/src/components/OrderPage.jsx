@@ -1,9 +1,10 @@
 import React from 'react';
 import OrderSection from './OrderSection';
+import OrderSupportChat from './OrderSupportChat';
 import Footer from './Footer';
 import SiteHeader from './SiteHeader';
 
-function OrderPage({ openCart, cartCount = 0 }) {
+function OrderPage({ openCart, openCakeBuilder, cartCount = 0 }) {
   return (
     <>
       <section className="order-hero">
@@ -22,7 +23,8 @@ function OrderPage({ openCart, cartCount = 0 }) {
           </div>
         </div>
       </section>
-      <OrderSection openCart={openCart} />
+      <OrderSection openCart={openCart} openCakeBuilder={openCakeBuilder} />
+      <OrderSupportChat />
       <section className="content-block" id="delivery">
         <div className="section">
           <div className="section-title">
